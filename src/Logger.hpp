@@ -81,25 +81,18 @@ private:
 
     ~Logger() = default;
 
-    static void Log(Level level, const char *tag, const char *fmt, ...) {
+    template<typename... Args>
+    static void Log(Level level, const char *tag, const char *fmt, Args... args) {
         Logger &instance = GetInstance();
         if (instance.mLevel <= level) {
             std::scoped_lock<std::mutex> lock(instance.mMutex);
             std::time_t t = std::time(nullptr);
             std::array<char, 100> time_buf{};
             std::strftime(time_buf.data(), sizeof time_buf, "%Y-%m-%d %H:%M:%S", std::gmtime(&t));
-            va_list args1;
-                    va_start(args1, fmt);
-            va_list args2;
-            va_copy(args2, args1);
-            std::vector<char> buf(1 + std::vsnprintf(nullptr, 0, fmt, args1));
-                    va_end(args1);
-            std::vsnprintf(buf.data(), buf.size(), fmt, args2);
-                    va_end(args2);
-            std::printf("[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
+            std::printf("[%s] [%s] %s\n", time_buf.data(), tag, fmt, args...);
             if (instance.mFileOutputEnabled) {
                 std::FILE *file = std::fopen(instance.mFileOutput.c_str(), "a");
-                std::fprintf(file, "[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
+                std::fprintf(file, "[%s] [%s] %s\n", time_buf.data(), tag, fmt, args...);
                 std::fclose(file);
             }
         }
