@@ -4,6 +4,7 @@
 #pragma warning(disable : 4996)
 #endif
 
+#include <array>
 #include <cstdarg>
 #include <cstdio>
 #include <ctime>
@@ -85,8 +86,8 @@ private:
         if (instance.mLevel <= level) {
             std::scoped_lock<std::mutex> lock(instance.mMutex);
             std::time_t t = std::time(nullptr);
-            char time_buf[100];
-            std::strftime(time_buf, sizeof time_buf, "%Y-%m-%d %H:%M:%S", std::gmtime(&t));
+            std::array<char, 100> time_buf{};
+            std::strftime(time_buf.data(), sizeof time_buf, "%Y-%m-%d %H:%M:%S", std::gmtime(&t));
             va_list args1;
                     va_start(args1, fmt);
             va_list args2;
@@ -95,10 +96,10 @@ private:
                     va_end(args1);
             std::vsnprintf(buf.data(), buf.size(), fmt, args2);
                     va_end(args2);
-            std::printf("[%s] [%s] %s\n", time_buf, tag, buf.data());
+            std::printf("[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
             if (instance.mFileOutput) {
                 std::FILE *file = std::fopen(instance.mFileName.c_str(), "a");
-                std::fprintf(file, "[%s] [%s] %s\n", time_buf, tag, buf.data());
+                std::fprintf(file, "[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
                 std::fclose(file);
             }
         }
