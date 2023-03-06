@@ -30,20 +30,20 @@ public:
 
     Logger &operator=(Logger &&) = delete;
 
-    static Logger &Get() {
+    static Logger &GetInstance() {
         static Logger instance;
         return instance;
     }
 
     static void SetLevel(Level level) {
-        Logger &instance = Get();
+        Logger &instance = GetInstance();
         instance.mLevel = level;
     }
 
-    static void SetFileOutput(const std::string &path) {
-        Logger &instance = Get();
-        instance.mFileOutput = true;
-        instance.mFileName = path;
+    static void SetFileOutput(std::string_view path) {
+        Logger &instance = GetInstance();
+        instance.mFileOutputEnabled = true;
+        instance.mFileOutput = path;
     }
 
     template<typename... Args>
@@ -82,7 +82,7 @@ private:
     ~Logger() = default;
 
     static void Log(Level level, const char *tag, const char *fmt, ...) {
-        Logger &instance = Get();
+        Logger &instance = GetInstance();
         if (instance.mLevel <= level) {
             std::scoped_lock<std::mutex> lock(instance.mMutex);
             std::time_t t = std::time(nullptr);
@@ -97,8 +97,8 @@ private:
             std::vsnprintf(buf.data(), buf.size(), fmt, args2);
                     va_end(args2);
             std::printf("[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
-            if (instance.mFileOutput) {
-                std::FILE *file = std::fopen(instance.mFileName.c_str(), "a");
+            if (instance.mFileOutputEnabled) {
+                std::FILE *file = std::fopen(instance.mFileOutput.c_str(), "a");
                 std::fprintf(file, "[%s] [%s] %s\n", time_buf.data(), tag, buf.data());
                 std::fclose(file);
             }
@@ -106,7 +106,7 @@ private:
     }
 
     Level mLevel = Level::Info;
-    bool mFileOutput = false;
-    std::string mFileName;
+    bool mFileOutputEnabled = false;
+    std::string mFileOutput;
     std::mutex mMutex;
 };
