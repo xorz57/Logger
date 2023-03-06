@@ -2,6 +2,7 @@
 
 int main() {
     Logger::SetLevel(Logger::Level::Trace);
+    Logger::EnableFileOutput();
     Logger::SetFileOutput("Logger.log");
     Logger::Trace("trace");
     Logger::Debug("debug");

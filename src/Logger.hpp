@@ -35,15 +35,25 @@ public:
         return instance;
     }
 
-    static void SetLevel(Level level) {
+    [[maybe_unused]] static void SetLevel(Level level) {
         Logger &instance = GetInstance();
         instance.mLevel = level;
     }
 
-    static void SetFileOutput(std::string_view path) {
+    [[maybe_unused]] static void EnableFileOutput() {
         Logger &instance = GetInstance();
         instance.mFileOutputEnabled = true;
-        instance.mFileOutput = path;
+    }
+
+    [[maybe_unused]] static void DisableFileOutput() {
+        Logger &instance = GetInstance();
+        instance.mFileOutputEnabled = false;
+    }
+
+    [[maybe_unused]] static void SetFileOutput(std::string_view output) {
+        Logger &instance = GetInstance();
+        instance.mFileOutputEnabled = true;
+        instance.mFileOutput = output;
     }
 
     template<typename... Args>
