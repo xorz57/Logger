@@ -1,6 +1,11 @@
-#include <iostream>
+#include "Logger.hpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Logger::Trace("trace");
+    Logger::Debug("debug");
+    Logger::Info("info");
+    Logger::Warn("warn");
+    Logger::Error("error");
+    Logger::Critical("critical");
     return 0;
 }
