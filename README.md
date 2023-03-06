@@ -1,6 +1,6 @@
 # Logger
 
-Logger written in C++
+Logger written in C++17
 
 ## How to Build using [CMake](https://cmake.org/)
 
