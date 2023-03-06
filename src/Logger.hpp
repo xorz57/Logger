@@ -22,8 +22,11 @@ public:
     };
 
     Logger(const Logger &) = delete;
+
     Logger(Logger &&) = delete;
+
     Logger &operator=(const Logger &) = delete;
+
     Logger &operator=(Logger &&) = delete;
 
     static Logger &Get() {
@@ -35,39 +38,46 @@ public:
         Logger &instance = Get();
         instance.mLevel = level;
     }
+
     static void SetFileOutput(const std::string &path) {
         Logger &instance = Get();
         instance.mFileOutput = true;
         instance.mFileName = path;
     }
 
-    template <typename... Args>
+    template<typename... Args>
     static void Trace(const char *fmt, Args... args) {
         Log(Level::Trace, "trace", fmt, args...);
     }
-    template <typename... Args>
+
+    template<typename... Args>
     static void Debug(const char *fmt, Args... args) {
         Log(Level::Debug, "debug", fmt, args...);
     }
-    template <typename... Args>
+
+    template<typename... Args>
     static void Info(const char *fmt, Args... args) {
         Log(Level::Info, "info", fmt, args...);
     }
-    template <typename... Args>
+
+    template<typename... Args>
     static void Warn(const char *fmt, Args... args) {
         Log(Level::Warn, "warn", fmt, args...);
     }
-    template <typename... Args>
+
+    template<typename... Args>
     static void Error(const char *fmt, Args... args) {
         Log(Level::Error, "error", fmt, args...);
     }
-    template <typename... Args>
+
+    template<typename... Args>
     static void Critical(const char *fmt, Args... args) {
         Log(Level::Critical, "critical", fmt, args...);
     }
 
 private:
     Logger() = default;
+
     ~Logger() = default;
 
     static void Log(Level level, const char *tag, const char *fmt, ...) {
