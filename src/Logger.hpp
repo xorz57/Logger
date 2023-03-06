@@ -12,15 +12,13 @@
 
 class Logger {
 public:
-    struct Level {
-        enum LevelEnum {
-            Trace,
-            Debug,
-            Info,
-            Warn,
-            Error,
-            Critical
-        };
+    enum class Level {
+        Trace,
+        Debug,
+        Info,
+        Warn,
+        Error,
+        Critical
     };
 
     Logger(const Logger &) = delete;
@@ -33,7 +31,7 @@ public:
         return instance;
     }
 
-    static void SetLevel(Level::LevelEnum level) {
+    static void SetLevel(Level level) {
         Logger &instance = Get();
         instance.mLevel = level;
     }
@@ -72,7 +70,7 @@ private:
     Logger() = default;
     ~Logger() = default;
 
-    static void Log(Level::LevelEnum level, const char *tag, const char *fmt, ...) {
+    static void Log(Level level, const char *tag, const char *fmt, ...) {
         Logger &instance = Get();
         if (instance.mLevel <= level) {
             std::scoped_lock<std::mutex> lock(instance.mMutex);
@@ -96,7 +94,7 @@ private:
         }
     }
 
-    Level::LevelEnum mLevel = Level::Info;
+    Level mLevel = Level::Info;
     bool mFileOutput = false;
     std::string mFileName;
     std::mutex mMutex;
