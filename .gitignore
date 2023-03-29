@@ -1,4 +1,8 @@
-# Project exclude paths
-/cmake-build-debug/
-# Project exclude paths
-/cmake-build-release/
+# IntelliJ CLion
+/cmake-build-*/
+
+# Microsoft Visual Studio Code
+/build/
+
+# Microsoft Visual Studio
+/out/
