@@ -35,78 +35,78 @@ public:
         return instance;
     }
 
-    [[maybe_unused]] static void SetLevel(Level level) {
+    static void SetLevel(const Level level) {
         Logger &instance = GetInstance();
         instance.mLevel = level;
     }
 
-    [[maybe_unused]] static void EnableFileOutput() {
+    static void EnableFileOutput() {
         Logger &instance = GetInstance();
         instance.mFileOutputEnabled = true;
     }
 
-    [[maybe_unused]] static void DisableFileOutput() {
+    static void DisableFileOutput() {
         Logger &instance = GetInstance();
         instance.mFileOutputEnabled = false;
     }
 
-    [[maybe_unused]] static void SetFileOutput(std::string_view output) {
+    static void SetFileOutput(const char *output) {
         Logger &instance = GetInstance();
         instance.mFileOutputEnabled = true;
         instance.mFileOutput = output;
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Trace(const char *format, Args... args) {
+    static void Trace(const char *format, Args... args) {
         Log(Level::Trace, "trace", format, args...);
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Debug(const char *format, Args... args) {
+    static void Debug(const char *format, Args... args) {
         Log(Level::Debug, "debug", format, args...);
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Info(const char *format, Args... args) {
+    static void Info(const char *format, Args... args) {
         Log(Level::Info, "info", format, args...);
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Warn(const char *format, Args... args) {
+    static void Warn(const char *format, Args... args) {
         Log(Level::Warn, "warn", format, args...);
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Error(const char *format, Args... args) {
+    static void Error(const char *format, Args... args) {
         Log(Level::Error, "error", format, args...);
     }
 
     template<typename... Args>
-    [[maybe_unused]] static void Critical(const char *format, Args... args) {
+    static void Critical(const char *format, Args... args) {
         Log(Level::Critical, "critical", format, args...);
     }
 
-    [[maybe_unused]] static void Trace(const char *str) {
+    static void Trace(const char *str) {
         Log(Level::Trace, "trace", str);
     }
 
-    [[maybe_unused]] static void Debug(const char *str) {
+    static void Debug(const char *str) {
         Log(Level::Debug, "debug", str);
     }
 
-    [[maybe_unused]] static void Info(const char *str) {
+    static void Info(const char *str) {
         Log(Level::Info, "info", str);
     }
 
-    [[maybe_unused]] static void Warn(const char *str) {
+    static void Warn(const char *str) {
         Log(Level::Warn, "warn", str);
     }
 
-    [[maybe_unused]] static void Error(const char *str) {
+    static void Error(const char *str) {
         Log(Level::Error, "error", str);
     }
 
-    [[maybe_unused]] static void Critical(const char *str) {
+    static void Critical(const char *str) {
         Log(Level::Critical, "critical", str);
     }
 
@@ -116,10 +116,10 @@ private:
     ~Logger() = default;
 
     template<typename... Args>
-    [[maybe_unused]] static void Log(Level level, const char *tag, const char *format, Args... args) {
+    static void Log(const Level level, const char *tag, const char *format, Args... args) {
+        std::lock_guard<std::mutex> lock(instance.mMutex);
         Logger &instance = GetInstance();
         if (instance.mLevel <= level) {
-            std::scoped_lock<std::mutex> lock(instance.mMutex);
             std::time_t t = std::time(nullptr);
             std::array<char, 100> time_buf{};
             std::strftime(time_buf.data(), sizeof time_buf, "%Y-%m-%d %H:%M:%S", std::gmtime(&t));
@@ -136,10 +136,10 @@ private:
         }
     }
 
-    [[maybe_unused]] static void Log(Level level, const char *tag, const char *str) {
+    static void Log(const Level level, const char *tag, const char *str) {
+        std::lock_guard<std::mutex> lock(instance.mMutex);
         Logger &instance = GetInstance();
         if (instance.mLevel <= level) {
-            std::scoped_lock<std::mutex> lock(instance.mMutex);
             std::time_t t = std::time(nullptr);
             std::array<char, 100> time_buf{};
             std::strftime(time_buf.data(), sizeof time_buf, "%Y-%m-%d %H:%M:%S", std::gmtime(&t));

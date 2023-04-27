@@ -7,7 +7,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=coverage)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
 
-Logger written in C++17
+Logger written in C++11
 
 ## Example
 
