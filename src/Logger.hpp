@@ -117,8 +117,8 @@ private:
 
     template<typename... Args>
     static void Log(const Level level, const char *tag, const char *format, Args... args) {
-        std::lock_guard<std::mutex> lock(instance.mMutex);
         Logger &instance = GetInstance();
+        std::lock_guard<std::mutex> lock(instance.mMutex);
         if (instance.mLevel <= level) {
             std::time_t t = std::time(nullptr);
             std::array<char, 100> time_buf{};
@@ -137,8 +137,8 @@ private:
     }
 
     static void Log(const Level level, const char *tag, const char *str) {
-        std::lock_guard<std::mutex> lock(instance.mMutex);
         Logger &instance = GetInstance();
+        std::lock_guard<std::mutex> lock(instance.mMutex);
         if (instance.mLevel <= level) {
             std::time_t t = std::time(nullptr);
             std::array<char, 100> time_buf{};
