@@ -28,7 +28,7 @@ int main() {
 }
 ```
 
-```
+```console
 [2023-03-22 11:17:11] [trace] trace
 [2023-03-22 11:17:11] [debug] debug
 [2023-03-22 11:17:11] [info] info
