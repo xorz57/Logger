@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <ctime>
 #include <mutex>
+#include <string>
 #include <vector>
 
 class Logger {
