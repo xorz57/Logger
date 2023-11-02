@@ -37,7 +37,7 @@ int main() {
 [2023-03-22 11:17:11] [critical] critical
 ```
 
-## How to Build using [CMake](https://cmake.org/)
+## How to Build using CMake
 
 ```bash
 cmake -B build
