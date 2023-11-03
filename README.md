@@ -1,13 +1,25 @@
-# Logger
+<h1 align="center">Logger</h1>
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=bugs)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=coverage)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=xorz57_Logger)
-
-Logger written in C++11
+<div align="center">
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=alert_status" alt="Quality Gate Status">
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=bugs" alt="Bugs">
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=vulnerabilities" alt="Vulnerabilities">
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=code_smells" alt="Code Smells">
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=coverage" alt="Coverage">
+    </a>
+    <a href="https://sonarcloud.io/summary/new_code?id=xorz57_Logger">
+        <img src="https://sonarcloud.io/api/project_badges/measure?project=xorz57_Logger&metric=duplicated_lines_density" alt="Duplicated Lines (%)">
+    </a>
+</div>
 
 ## Example
 
