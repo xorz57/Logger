@@ -24,7 +24,7 @@
 ## Example
 
 ```c++
-#include "Logger.hpp"
+#include "Logger/Logger.hpp"
 
 int main() {
     Logger::SetLevel(Logger::Level::Trace);
@@ -39,6 +39,8 @@ int main() {
     return 0;
 }
 ```
+
+## Output
 
 ```console
 [2023-03-22 11:17:11] [trace] trace
