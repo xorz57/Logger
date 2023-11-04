@@ -1,4 +1,4 @@
-#include "Logger.hpp"
+#include "Logger/Logger.hpp"
 
 int main() {
     Logger::SetLevel(Logger::Level::Trace);
