@@ -177,8 +177,8 @@ private:
         }
     }
 
-    Level mLevel = Level::Info;
-    bool mFileOutputEnabled = false;
-    std::string mFileOutput;
+    Level mLevel{Level::Info};
+    bool mFileOutputEnabled{false};
+    std::string mFileOutput{"default.log"};
     std::mutex mMutex;
 };
