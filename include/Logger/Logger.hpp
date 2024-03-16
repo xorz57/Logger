@@ -77,7 +77,6 @@ public:
 
     static void SetFileOutput(const char *output) {
         Logger &instance = GetInstance();
-        instance.mFileOutputEnabled = true;
         instance.mFileOutput = output;
     }
 
